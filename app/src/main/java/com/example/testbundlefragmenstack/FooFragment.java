@@ -43,20 +43,23 @@ public class FooFragment extends Fragment {
 
     double x;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment, container, false);
-        ButterKnife.bind(this, view);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null)
             x = (savedInstanceState.getDouble("Value", 0));
 
         if (x == 0)
             x = Math.random();
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment, container, false);
+        ButterKnife.bind(this, view);
         textView.setText(Double.toString(x));
-
         return view;
     }
 }
